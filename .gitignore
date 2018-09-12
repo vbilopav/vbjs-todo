@@ -1,7 +1,7 @@
 # dependencies
 /node_modules
-/template-demo/node_modules
-/module-demo/node_modules
+/template-demo/libs/vbjs.js
+/module-demo/libs/vbjs.js
 
 # IDE - VSCode
 .vscode/*
