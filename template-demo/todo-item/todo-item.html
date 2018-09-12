@@ -5,11 +5,5 @@ ${this.template.css.import("todo-item/todo-item.css")}
     <div class="ToDoItem-Delete" onclick="deleteClick">-</div>
 </div>
 
-${
-<script>
-    this.template.context = {
-        deleteClick: () => this.template.model.item.remove()
-    }
-</script>
-}
+${() => this.deleteClick = () => this.template.parent.removeItemById(this.dataId)}
 
