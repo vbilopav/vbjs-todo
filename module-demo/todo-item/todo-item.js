@@ -1,7 +1,6 @@
 define([], () => class {
 
     constructor({options}) {
-        options.context = this;
         options.css = "todo-item/todo-item.css";
     }
 
@@ -15,6 +14,6 @@ define([], () => class {
     }
 
     deleteClick() {
-        this.model.item.remove();
+        this.model.item.parentElement.remove();
     }
 })

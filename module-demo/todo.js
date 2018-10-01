@@ -2,7 +2,6 @@ define([], () => class {
 
     constructor({options}) {
         _app.customElements.define({tag: "todo-item", src: "todo-item/todo-item"});
-        options.context = this;
         options.css = "todo.css";
         this.input = ""; // initial value
         this.list = ["clean the house", "buy milk"];
@@ -31,6 +30,10 @@ define([], () => class {
     }
 
     createNewToDoItem() {
+        if (!this.model.input.value){
+            alert("Please enter a todo!");
+            return
+        }  
         let newElement = document.createElement("todo-item");
         newElement.innerHTML = this.model.input.value;
         this.model.content.appendChild(newElement);
