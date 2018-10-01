@@ -1,10 +1,10 @@
 # vbjs-todo
 
-Inspired by "same app, different framework" series of articles to demonstrate usage and simplicity of [vbjs](https://github.com/vbilopav/vbjs/tree/master/src/vbjs) JavaScript frameowrk.
+Inspired by "same app, different framework" series of articles to demonstrate usage and simplicity of [vbjs](https://github.com/vbilopav/vbjs/tree/master/src/vbjs) JavaScript framework.
 
 Articles are available [here](https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-here-are-the-differences-e9a1ae8077fd) and [here](https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-part-2-angular-39b1aa289878).
 
-Containes two separate "todo" demo applications:
+Contains two separate "todo" demo applications:
 
 - **template-demo** - todo app implemented with html templates
 
@@ -17,6 +17,11 @@ Containes two separate "todo" demo applications:
 git clone https://github.com/vbilopav/vbjs-todo.git
 ```
 
+2) Install required dependency:
+```
+npm install
+```
+
 2) Navigate to desired demo **template-demo** or **module-demo**
 ```
 cd template-demo
@@ -24,11 +29,6 @@ cd template-demo
 or
 ```
 cd module-demo
-```
-
-3) Install dependencies (vbjs framework)
-```
-npm install
 ```
 
 4) Run local web server of choice, for example:

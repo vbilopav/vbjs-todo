@@ -19,7 +19,7 @@
                 (() => {
                   _app.customElements.define({tag: "todo-item", src: "template!todo-item/todo-item.html"});
                   this.template.css.import("todo.css");
-                  this.list = ["clean the house", "buy milk"];
+                  this._items = {1: "clean the house", 2: "buy milk"}
                 })()
             </script>
             }
@@ -28,28 +28,48 @@
                 <h1 class="ToDo-Header">VBJS To Do demo</h1>
                 <div class="ToDo-Container">
                     <div class="ToDo-Content" id="content">
-                        ${this.template.forEach(this.list, item => `
-                            <todo-item>${item}</todo-item>
+                        ${this.template.forEach(this._items, (id, value) => `
+                            <todo-item data-id="${id}">${value}</todo-item>
                         `)}
                     </div>
-                    <input type="text" id="input" />
-                    <div class="ToDo-Add" onclick="createNewToDoItem">+</div>
+                    <input type="text" id="input" onkeyup="handleKeyUp" />
+                    <div class="ToDo-Add" onclick="handleAddClick">+</div>
                 </div>
             </div>
             
             ${
             <script>
-                this.template.context = {
-                    input: "", // initial value for input element
-                    createNewToDoItem: () => {
-                        if (!this.template.model.input.value) {
-                            alert("Please enter a todo!");
-                            return
-                        }  
-                        let newElement = document.createElement("todo-item");
-                        newElement.innerHTML = this.template.model.input.value;
-                        this.template.model.content.appendChild(newElement);
-                    }
+                () => {
+
+                    this.addNewItem = value => {
+                        let newId = Math.max(...Object.keys(this._items)) + 1,
+                            newElement = document.createElement("todo-item");
+                        this._items[newId] = value;
+                        this.template.model.content.appendChild(newElement.html(value).attr("data-id", newId));
+                    };
+                
+                    this.removeItemById = id => {
+                        if (this._items[id] === undefined) {
+                            return;
+                        }
+                        delete this._items[id];
+                        this.template.model.content.find(`todo-item[data-id='${id}']`).remove();
+                    };
+
+                    this.handleAddClick = () => {
+                        this.addNewItem(this.template.model.input.value);
+                    };
+
+                    this.handleKeyUp = e => {
+                        if (this.template.model.input.value === "") {
+                            return;
+                        }
+                        if (e.key !== "Enter") {
+                            return;
+                        }
+                        this.addNewItem(this.template.model.input.value);
+                    };
+
                 }
             </script>
             }
@@ -58,7 +78,7 @@
     </div>
 
     <script nomodule>document.body.innerHTML ="<br />Please update your browser or install latest modern browser (other than Internet Explorer)"</script>
-    <script type="module" src="/node_modules/vbjs/dist/1.3.5/bundle/vbjs.js"></script>
+    <script type="module" src="/libs/vbjs.js"></script>
 
   </body>
 </html>

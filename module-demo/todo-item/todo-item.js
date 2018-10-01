@@ -5,7 +5,8 @@ define([], () => class {
     }
 
     render({params}) {
-        let {html}=params;
+        let {html, dataId}=params;
+        this.id = dataId;
         return String.html`
             <div class="ToDoItem" id="item">
                 <p class="ToDoItem-Text">${html}</p>
@@ -14,6 +15,6 @@ define([], () => class {
     }
 
     deleteClick() {
-        this.model.item.parentElement.remove();
+        this.parent.removeItemById(this.id)
     }
 })
