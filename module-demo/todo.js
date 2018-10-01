@@ -34,10 +34,13 @@ define([], () => class {
     }
 
     addNewItem(value) {
-        let newId = Math.max(...Object.keys(this._items)) + 1,
-            newElement = document.createElement("todo-item");
+        if (!value){
+            alert("Please enter a todo!");
+            return;
+        }
+        let newId = Math.max(...Object.keys(this._items)) + 1;
         this._items[newId] = value;
-        this.model.content.appendChild(newElement.html(value).attr("data-id", newId));
+        this.model.content.appendChild(document.createElement("todo-item").html(value).attr("data-id", newId));
     }
 
     removeItemById(id) {
