@@ -42,10 +42,13 @@
                 () => {
 
                     this.addNewItem = value => {
-                        let newId = Math.max(...Object.keys(this._items)) + 1,
-                            newElement = document.createElement("todo-item");
+                        if (!value){
+                            alert("Please enter a todo!");
+                            return;
+                        }
+                        let newId = Math.max(...Object.keys(this._items)) + 1;
                         this._items[newId] = value;
-                        this.template.model.content.appendChild(newElement.html(value).attr("data-id", newId));
+                        this.template.model.content.appendChild(document.createElement("todo-item").html(value).attr("data-id", newId));
                     };
                 
                     this.removeItemById = id => {
@@ -78,7 +81,7 @@
     </div>
 
     <script nomodule>document.body.innerHTML ="<br />Please update your browser or install latest modern browser (other than Internet Explorer)"</script>
-    <script type="module" src="/libs/vbjs.js"></script>
+    <script type="module" src="/libs/vbjs/vbjs.js"></script>
 
   </body>
 </html>
